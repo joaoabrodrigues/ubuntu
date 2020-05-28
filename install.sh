@@ -170,6 +170,18 @@ wget -c https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 sudo dpkg -i dbeaver-ce_latest_amd64.deb
 ## ----------------------------------------------------------------------------------------
 
+## ----------------------------------------------------------------------------------------
+echo "Installing aws-cli v2"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
+echo "Configuring inotify max_user_watches"
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+## ----------------------------------------------------------------------------------------
+
 echo "System update"
 
 ## ----------------------------------------------------------------------------------------
