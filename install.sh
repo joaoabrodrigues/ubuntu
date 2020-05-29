@@ -1,6 +1,11 @@
 #!/bin/bash
 
 ## ----------------------------------------------------------------------------------------
+echo "What is your the username?"
+read local_username
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
 echo "Removing apt locks"
 sudo rm /var/lib/dpkg/lock-frontend ; sudo rm /var/cache/apt/archives/lock ;
 ## ----------------------------------------------------------------------------------------
@@ -20,20 +25,20 @@ echo "Configuring git"
 ## ----------------------------------------------------------------------------------------
 echo "What name do you want to use in GIT user.name?"
 read git_config_user_name
-git config --global user.name "$git_config_user_name"
-clear 
+git config --global user.name "$git_config_user_name" 
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
 echo "What email do you want to use in GIT user.email?"
 read git_config_user_email
 git config --global user.email $git_config_user_email
-clear
 ## ----------------------------------------------------------------------------------------
 
+## ----------------------------------------------------------------------------------------
 echo "Generating a SSH Key"
-ssh-keygen -t rsa -b 4096 -C $git_config_user_email
-ssh-add ~/.ssh/id_rsa
+ssh-keygen -t rsa -b 4096 -C $git_config_user_email -f /home/$local_username/.ssh -q -N ""
+ssh-add /home/$local_username/.ssh/id_rsa
+## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
 echo "Installing oh-my-zsh"
@@ -48,14 +53,14 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~
 
 ## ----------------------------------------------------------------------------------------
 echo "Downloading Powerlevel10k fonts"
-cd ~/Downloads
+cd /home/$local_username/Downloads
 
 wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
 wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
 wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
 wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
 
-sudo cp *ttf ~/.local/share/fonts/
+sudo cp *ttf /home/$local_username/.local/share/fonts/
 
 fc-cache -f
 ## ----------------------------------------------------------------------------------------
@@ -69,7 +74,7 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo usermod -aG docker $USER
 docker --version
 ## ----------------------------------------------------------------------------------------
@@ -137,7 +142,7 @@ echo "External downloads"
 
 ## ----------------------------------------------------------------------------------------
 echo "Installing google chrome"
-cd ~/Downloads/
+cd /home/$local_username/Downloads/
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 ## ----------------------------------------------------------------------------------------
