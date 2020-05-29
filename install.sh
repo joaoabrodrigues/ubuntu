@@ -183,12 +183,6 @@ echo "Using Powerlevel10k zsh theme"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 ## ----------------------------------------------------------------------------------------
 
-## ----------------------------------------------------------------------------------------
-echo "Installing oh-my-zsh"
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-chsh -s /bin/zsh
-## ----------------------------------------------------------------------------------------
-
 echo "System update"
 
 ## ----------------------------------------------------------------------------------------
@@ -196,3 +190,9 @@ sudo apt update && sudo apt dist-upgrade -y && sudo apt autoclean -y && sudo apt
 ## ----------------------------------------------------------------------------------------
 
 echo "Done!"
+
+## ----------------------------------------------------------------------------------------
+echo "Installing oh-my-zsh"
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+chsh -s /bin/zsh
+## ----------------------------------------------------------------------------------------
