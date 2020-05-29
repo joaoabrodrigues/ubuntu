@@ -16,8 +16,8 @@ sudo apt update
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
-echo "Installing python3 python-pip git curl vim zsh flameshot copyq htop"
-sudo apt install python3 python-pip git curl vim zsh flameshot copyq htop -y
+echo "Installing python3 python3-pip git curl vim zsh flameshot copyq htop"
+sudo apt install python3 python3-pip git curl vim zsh flameshot copyq htop -y
 ## ----------------------------------------------------------------------------------------
 
 echo "Configuring git"
@@ -41,33 +41,8 @@ ssh-add /home/$local_username/.ssh/id_rsa
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
-echo "Installing oh-my-zsh"
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-chsh -s /bin/zsh
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
-echo "Using Powerlevel10k zsh theme"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
-echo "Downloading Powerlevel10k fonts"
-cd /home/$local_username/Downloads
-
-wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
-
-sudo cp *ttf /home/$local_username/.local/share/fonts/
-
-fc-cache -f
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
 echo "Installing docker" 
-sudo apt remove docker docker-engine docker.io containerd runc
+sudo apt remove docker docker.io containerd runc
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -75,7 +50,7 @@ sudo add-apt-repository \
    stable"
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $local_username
 docker --version
 ## ----------------------------------------------------------------------------------------
 
@@ -185,6 +160,33 @@ sudo ./aws/install
 ## ----------------------------------------------------------------------------------------
 echo "Configuring inotify max_user_watches"
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+## ----------------------------------------------------------------------------------------
+
+echo "Configuring oh-my-zsh"
+## ----------------------------------------------------------------------------------------
+echo "Downloading Powerlevel10k fonts"
+cd /home/$local_username/Downloads
+
+wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+wget -c https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+
+sudo mkdir /home/$local_username/.local/share/fonts/
+sudo cp *ttf /home/$local_username/.local/share/fonts/
+
+fc-cache -f
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
+echo "Using Powerlevel10k zsh theme"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
+echo "Installing oh-my-zsh"
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+chsh -s /bin/zsh
 ## ----------------------------------------------------------------------------------------
 
 echo "System update"
