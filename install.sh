@@ -95,7 +95,13 @@ code --install-extension vscode-icons-team.vscode-icons
 
 ## ----------------------------------------------------------------------------------------
 echo "Installing intellij"
-sudo snap install intellij-idea-community --classic --edge
+echo "Do you want to install intellij ultimate? (y/n)"
+read is_intellij_ultimate
+if echo "$is_intellij_ultimate" | grep -iq "^y" ;then
+	sudo snap install intellij-idea-ultimate --classic --edge
+else
+	sudo snap install intellij-idea-community --classic --edge
+fi
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
