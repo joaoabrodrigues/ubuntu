@@ -16,8 +16,8 @@ sudo apt update
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
-echo "Installing python3 python3-pip git curl vim zsh flameshot copyq htop"
-sudo apt install python3 python3-pip git curl vim zsh flameshot copyq htop -y
+echo "Installing python3 python3-pip git curl vim zsh flameshot copyq htop tilix"
+sudo apt install python3 python3-pip git curl vim zsh flameshot copyq htop tilix -y
 ## ----------------------------------------------------------------------------------------
 
 echo "Configuring git"
