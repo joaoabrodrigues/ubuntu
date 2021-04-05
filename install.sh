@@ -16,9 +16,15 @@ sudo apt update
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
-echo "Installing python3 python3-pip git curl vim zsh copyq htop tilix openjdk-8-jdk"
-sudo apt install python3 python3-pip git curl vim zsh copyq htop tilix openjdk-8-jdk -y
+echo "Installing python3 python3-pip git curl vim zsh copyq htop tilix openjdk-8-jdk dconf-tools gnome-tweak-tool chrome-gnome-shell silversearcher-ag"
+sudo apt install python3 python3-pip git curl vim zsh copyq htop tilix openjdk-8-jdk dconf-tools gnome-tweak-tool chrome-gnome-shell silversearcher-ag -y
 ## ----------------------------------------------------------------------------------------
+
+## Extensions to Gnome Tweak Tool
+## https://extensions.gnome.org/extension/708/panel-osd/
+## https://extensions.gnome.org/extension/1160/dash-to-panel/
+## https://extensions.gnome.org/extension/414/settings-menu/
+## https://extensions.gnome.org/extension/234/steal-my-focus/
 
 echo "Configuring git"
 
@@ -64,13 +70,18 @@ docker-compose --version
 echo "Installing snap packages"
 
 ## ----------------------------------------------------------------------------------------
-echo "Installing postman"
-snap install postman
+echo "Installing postman spotify flameshot"
+snap install postman spotify flameshot
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
 echo "Installing code"
-sudo snap install code --classic
+sudo snap install code slack --classic
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
+echo "Installing node"
+sudo snap install --edge node --classic
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
@@ -102,26 +113,6 @@ if echo "$is_intellij_ultimate" | grep -iq "^y" ;then
 else
 	sudo snap install intellij-idea-community --classic --edge
 fi
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
-echo "Installing node"
-sudo snap install --edge node --classic
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
-echo "Installing spotify"
-sudo snap install spotify
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
-echo "Installing flameshot"
-sudo snap install flameshot
-## ----------------------------------------------------------------------------------------
-
-## ----------------------------------------------------------------------------------------
-echo "Installing slack" 
-sudo snap install slack --classic
 ## ----------------------------------------------------------------------------------------
 
 echo "External downloads"
