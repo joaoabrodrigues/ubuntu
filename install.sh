@@ -16,8 +16,8 @@ sudo apt update
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
-echo "Installing python3 python3-pip git curl vim zsh flameshot copyq htop tilix openjdk-8-jdk"
-sudo apt install python3 python3-pip git curl vim zsh flameshot copyq htop tilix openjdk-8-jdk -y
+echo "Installing python3 python3-pip git curl vim zsh copyq htop tilix openjdk-8-jdk"
+sudo apt install python3 python3-pip git curl vim zsh copyq htop tilix openjdk-8-jdk -y
 ## ----------------------------------------------------------------------------------------
 
 echo "Configuring git"
@@ -115,6 +115,11 @@ sudo snap install spotify
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
+echo "Installing flameshot"
+sudo snap install flameshot
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
 echo "Installing slack" 
 sudo snap install slack --classic
 ## ----------------------------------------------------------------------------------------
@@ -185,6 +190,12 @@ fc-cache -f
 ## ----------------------------------------------------------------------------------------
 
 ## ----------------------------------------------------------------------------------------
+echo "Installing oh-my-zsh"
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+chsh -s /bin/zsh
+## ----------------------------------------------------------------------------------------
+
+## ----------------------------------------------------------------------------------------
 echo "Using Powerlevel10k zsh theme"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 ## ----------------------------------------------------------------------------------------
@@ -196,9 +207,3 @@ sudo apt update && sudo apt dist-upgrade -y && sudo apt autoclean -y && sudo apt
 ## ----------------------------------------------------------------------------------------
 
 echo "Done!"
-
-## ----------------------------------------------------------------------------------------
-echo "Installing oh-my-zsh"
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-chsh -s /bin/zsh
-## ----------------------------------------------------------------------------------------
